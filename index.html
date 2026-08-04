@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제4회 VCC - LEGACY</title>
+<meta name="description" content="전문직이 전문직을 부르는 자리, LEGACY가 함께합니다.">
+<meta property="og:title" content="제4회 VCC - LEGACY">
+<meta property="og:description" content="전문직이 전문직을 부르는 자리, LEGACY가 함께합니다.">
+<meta property="og:image" content="images/og-image.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="images/favicon-256.png">
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#0A0C12; --bg2:#0D0F16; --bg3:#090A0F;
+    --gold:#C4A35A; --ivory:#F3EEE2; --stone:#B9B2A0; --black3:#1a1c24;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Noto Sans KR', -apple-system, sans-serif;
+    background:var(--bg1); color:var(--ivory); line-height:1.6;
+    word-break:keep-all;
+  }
+  a{color:inherit}
+  img{max-width:100%; display:block}
+  .container{max-width:1100px; margin:0 auto; padding:0 24px}
+  .serif{font-family:Georgia,'Noto Serif KR',serif}
+  .eyebrow{font-size:13px; font-weight:600; letter-spacing:6px; color:var(--gold); text-transform:uppercase; margin-bottom:18px}
+  .rule{width:120px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:30px auto}
+
+  /* header (logo removed, CTA only) */
+  header{position:fixed; top:0; left:0; width:100%; z-index:500; background:rgba(10,12,18,.75); backdrop-filter:blur(8px); border-bottom:1px solid rgba(196,163,90,.15)}
+  header .container{display:flex; align-items:center; justify-content:flex-end; padding:16px 24px}
+  .btn-cta{display:inline-flex; align-items:center; justify-content:center; padding:11px 22px; background:var(--gold); color:var(--bg1); font-size:13px; font-weight:700; letter-spacing:.5px; border-radius:3px; text-decoration:none; white-space:nowrap}
+
+  /* fixed floating buttons */
+  .fixed_btn{position:fixed; bottom:36px; right:36px; display:flex; flex-direction:column; gap:12px; z-index:600}
+  .fixed_btn a{width:76px; height:76px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-align:center; font-size:13px; font-weight:700; line-height:1.3; letter-spacing:-.3px; text-decoration:none; box-shadow:0 4px 14px rgba(0,0,0,.4); transition:transform .2s ease}
+  .fixed_btn a:hover{transform:translateY(-2px)}
+  .fixed_btn .apply{background:var(--gold); color:var(--bg1)}
+  .fixed_btn .ask{background:rgba(10,12,18,.9); color:var(--gold); border:1px solid rgba(196,163,90,.55)}
+  @media (max-width:600px){.fixed_btn{bottom:20px; right:16px} .fixed_btn a{width:62px; height:62px; font-size:11px}}
+
+  /* hero */
+  .sec-hero{position:relative; width:100%; min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 55%,var(--bg3) 100%); text-align:center; padding:150px 24px 80px; overflow:hidden}
+  .sec-hero::before{content:"";position:absolute; inset:0; background:radial-gradient(ellipse at 50% 30%, rgba(196,163,90,.10), transparent 60%)}
+  .sec-hero-inner{position:relative; z-index:2; max-width:820px}
+  .sec-hero .tit{font-size:46px; font-weight:400; line-height:1.6; color:var(--ivory); letter-spacing:-.5px}
+  .sec-hero .tit em{font-style:normal; color:var(--gold)}
+  .nowrap-line{white-space:nowrap; display:block; font-size:clamp(17px, 4.4vw, 46px)}
+  .sec-hero .sub{margin-top:26px; font-size:16px; color:var(--stone); line-height:1.9}
+  .sec-hero .cta-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:40px}
+  .btn-primary{padding:17px 40px; background:var(--gold); color:var(--bg1); font-weight:700; font-size:15px; letter-spacing:.5px; border-radius:2px; text-decoration:none}
+  .btn-ghost{padding:17px 40px; background:transparent; color:var(--gold); font-weight:700; font-size:15px; letter-spacing:.5px; border-radius:2px; text-decoration:none; border:1px solid rgba(196,163,90,.55)}
+  @media (max-width:768px){.sec-hero .tit{font-size:26px}}
+
+  /* info box */
+  .sec-info{background:var(--bg2); padding:60px 24px; border-top:1px solid rgba(196,163,90,.12); border-bottom:1px solid rgba(196,163,90,.12)}
+  .info-grid{max-width:1000px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:28px; text-align:center}
+  .info-grid .label{font-size:12px; letter-spacing:3px; color:var(--gold); font-weight:700; margin-bottom:10px}
+  .info-grid .val{font-size:16px; color:var(--ivory); line-height:1.6}
+  @media (max-width:768px){.info-grid{grid-template-columns:repeat(2,1fr); gap:32px 20px}}
+
+  /* intro statement */
+  .sec-statement{padding:130px 24px; text-align:center; background:var(--bg1)}
+  .sec-statement p{font-size:22px; line-height:1.9; color:var(--ivory); max-width:700px; margin:0 auto}
+  .sec-statement strong{color:var(--gold); font-weight:700}
+  @media (max-width:768px){.sec-statement p{font-size:17px}}
+
+  /* marquee (withlegacy.kr sec1) */
+  .marquee-sec{position:relative; padding:70px 0 90px; background:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 55%,var(--bg3) 100%); overflow:hidden}
+  .legacy-tag{position:absolute; right:6%; bottom:36px; font-size:12px; font-weight:600; letter-spacing:3px; color:var(--gold); text-transform:uppercase; z-index:5}
+  .legacy-tag span{color:var(--ivory)}
+  .marquee-ct{display:flex; flex-direction:column; gap:16px}
+  .marquee-ct ul{display:flex; align-items:center; gap:44px; width:max-content; opacity:.85}
+  .marquee-ct ul li{flex:0 0 auto; font-size:90px; font-weight:800; line-height:1; color:rgba(255,255,255,.15); font-family:Georgia,'Noto Serif KR',serif}
+  .marquee-ct ul li.on{color:var(--gold)}
+  .marquee-ct ul:nth-child(1){animation:marqueeLeft 22s linear infinite}
+  .marquee-ct ul:nth-child(2){animation:marqueeRight 26s linear infinite}
+  .marquee-ct ul:nth-child(3){animation:marqueeLeft 20s linear infinite}
+  .marquee-ct ul:nth-child(4){animation:marqueeRight 24s linear infinite}
+  @keyframes marqueeLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes marqueeRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  @media (max-width:768px){.marquee-ct ul li{font-size:34px} .marquee-ct ul{gap:20px} .legacy-tag{position:static; text-align:center; margin-top:30px}}
+
+  .scroll-down{position:relative; margin:50px auto 0; width:110px; height:70px}
+  .scroll-down .sd-wrap{position:relative; width:100%; height:100%; perspective:300px}
+  .scroll-down .sd{font-size:13px; letter-spacing:2px; position:absolute; top:0; left:0; color:var(--ivory); font-weight:600; opacity:0}
+  .scroll-down .sd.st01{animation:scr 3s linear 0s infinite}
+  .scroll-down .sd.st02{animation:scr 3s linear .6s infinite}
+  .scroll-down .sd.st03{animation:scr 3s linear 1.2s infinite}
+  .scroll-down .sd.st04{animation:scr 3s linear 1.8s infinite}
+  .scroll-down .sd.st05{animation:scr 3s linear 2.4s infinite}
+  @keyframes scr{0%{transform:rotateX(50deg); top:0%; opacity:0} 50%{opacity:1} 100%{transform:rotateX(-50deg); top:85%; opacity:0}}
+
+  /* txt_sec statement from withlegacy.kr */
+  .txt-sec{padding:140px 24px; text-align:center; background:var(--bg1)}
+  .txt-sec .tit{font-size:30px; font-weight:700; color:var(--ivory)}
+  .txt-sec .sub-tit{margin-top:16px; font-size:18px; color:var(--gold); font-weight:500}
+  .txt-sec .body-txt{margin-top:34px; font-size:15px; line-height:2; color:var(--stone)}
+  .txt-sec .invite{margin-top:30px; font-size:19px; font-weight:700; color:var(--ivory); font-family:Georgia,'Noto Serif KR',serif}
+  @media (max-width:768px){.txt-sec .tit{font-size:22px} .txt-sec .sub-tit{font-size:15px}}
+
+  /* venue hero (hyatt crossfade) */
+  .venue-hero{position:relative; width:100%; height:100vh; overflow:hidden}
+  .vslide{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; animation:hyattCrossfade 18s infinite; transition:transform 9s ease}
+  .vslide.v2{animation-delay:-6s}
+  .vslide.v3{animation-delay:-12s}
+  @keyframes hyattCrossfade{0%{opacity:1}28%{opacity:1}33%{opacity:0}95%{opacity:0}100%{opacity:1}}
+  .venue-overlay{position:absolute; inset:0; background:linear-gradient(180deg,rgba(9,10,15,.25) 0%, rgba(9,10,15,.7) 100%); z-index:2}
+  .venue-text{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; z-index:3}
+  .vt-date{font-size:34px; font-weight:800; color:var(--ivory)}
+  .vt-place{margin-top:12px; font-size:18px; letter-spacing:3px; color:var(--stone)}
+  @media (max-width:768px){.vt-date{font-size:22px} .vt-place{font-size:13px}}
+
+  /* autoplay video section */
+  .video-sec{position:relative; width:100%; min-height:100vh; background:#000; overflow:hidden; display:flex; align-items:center; justify-content:center}
+  .video-sec video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#000}
+  .mute-btn{position:absolute; bottom:28px; right:28px; z-index:5; width:48px; height:48px; border-radius:50%; background:rgba(10,12,18,.7); border:1px solid rgba(196,163,90,.6); color:var(--gold); cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center}
+
+  /* about / venue */
+  .sec-about{padding:110px 24px; background:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 55%,var(--bg3) 100%); text-align:center}
+  .sec-about .word{font-size:70px; letter-spacing:10px; color:var(--ivory)}
+  .sec-about .sub2{margin-top:18px; font-size:14px; letter-spacing:3px; color:var(--stone); text-transform:uppercase}
+  @media (max-width:768px){.sec-about .word{font-size:36px; letter-spacing:5px}}
+
+  .yt-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1100px; margin:60px auto 0}
+  .yt-card{text-align:left}
+  .yt-card .frame{position:relative; width:100%; aspect-ratio:16/9; border-radius:6px; overflow:hidden; border:1px solid rgba(196,163,90,.2)}
+  .yt-card iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+  .yt-card .ph{width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:var(--black3); color:var(--stone); font-size:13px}
+  .yt-card p{margin-top:12px; font-size:14px; color:var(--stone)}
+  @media (max-width:900px){.yt-grid{grid-template-columns:1fr}}
+
+  /* benefits */
+  .benefit-row{max-width:1100px; margin:0 auto; padding:80px 24px; display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center}
+  .benefit-row:nth-of-type(even){background:var(--bg2)}
+  .benefit-num{font-size:12px; letter-spacing:3px; color:var(--gold); font-weight:700; margin-bottom:14px}
+  .benefit-row h3{font-family:Georgia,'Noto Serif KR',serif; font-size:26px; font-weight:400; margin-bottom:14px}
+  .benefit-row p{color:var(--stone); font-size:15px; line-height:1.8}
+  .benefit-media{aspect-ratio:16/9; border-radius:6px; overflow:hidden; border:1px solid rgba(196,163,90,.2); position:relative}
+  .benefit-media iframe{width:100%; height:100%; border:0}
+  .benefit-media .ph{width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:var(--black3); color:var(--stone); font-size:13px; text-align:center; padding:20px}
+  @media (max-width:800px){.benefit-row{grid-template-columns:1fr}}
+  .footnote{text-align:center; font-size:12px; color:var(--stone); padding:0 24px 90px; opacity:.7}
+
+  /* gateway */
+  .sec-gateway{padding:130px 24px; text-align:center; background:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 55%,var(--bg3) 100%)}
+  .sec-gateway .tit{color:var(--gold); font-family:Georgia,'Noto Serif KR',serif; font-size:44px; letter-spacing:2px; margin-bottom:22px}
+  .sec-gateway .sub{max-width:600px; margin:0 auto; font-size:17px; color:var(--stone); line-height:1.9}
+  @media (max-width:768px){.sec-gateway .tit{font-size:30px}}
+
+  /* curriculum */
+  .sec-curriculum{padding:130px 24px; background:var(--bg1)}
+  .curr-head{text-align:center; margin-bottom:50px}
+  .curr-head .tit{font-family:Georgia,'Noto Serif KR',serif; font-size:38px; color:var(--ivory)}
+  .poster-block{max-width:520px; margin:0 auto 80px; border-radius:8px; overflow:hidden; border:1px solid rgba(196,163,90,.25); box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .curr-wrap{max-width:820px; margin:0 auto}
+  .curr-part{margin-bottom:56px}
+  .curr-part-head{display:flex; align-items:center; gap:16px; margin-bottom:20px; padding-bottom:14px; border-bottom:1px solid rgba(196,163,90,.3)}
+  .curr-badge{display:inline-flex; align-items:center; justify-content:center; padding:6px 16px; background:var(--gold); color:var(--bg1); font-weight:800; font-size:14px; border-radius:20px; flex:0 0 auto}
+  .curr-part-title{font-size:20px; font-weight:700; color:var(--ivory)}
+  .curr-part-title em{font-style:normal; color:var(--gold)}
+  .curr-row{display:grid; grid-template-columns:150px 1fr; gap:18px; padding:16px 0; border-bottom:1px dashed rgba(196,163,90,.15)}
+  .curr-time{font-size:13.5px; color:var(--gold); font-weight:700; letter-spacing:.5px}
+  .curr-name{font-size:16px; font-weight:700; color:var(--ivory)}
+  .curr-speaker{margin-top:6px; font-size:13px; color:var(--stone)}
+  .curr-row.curr-highlight{background:rgba(196,163,90,.08); border-radius:6px; padding:18px 16px; border-bottom:none; margin:4px 0}
+  .curr-row.curr-break{opacity:.55}
+  .curr-row.curr-break .curr-name{font-size:14px; font-weight:500}
+  @media (max-width:600px){.curr-row{grid-template-columns:1fr} .curr-time{margin-bottom:2px}}
+
+  /* member section */
+  .sec-team{width:100%; padding:120px 24px; background:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 55%,var(--bg3) 100%); box-sizing:border-box}
+  .sec_team_inner{max-width:1100px; margin:0 auto}
+  .sec_team_head{text-align:center; margin-bottom:60px}
+  .sec_team_tit{font-family:Georgia,'Noto Serif KR',serif; font-size:52px; font-weight:400; letter-spacing:4px; color:var(--ivory)}
+  .sec_team_group{width:100%; border-radius:8px; overflow:hidden; margin-bottom:70px; border:1px solid rgba(196,163,90,.25); box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .sec_team_group img{width:100%; height:auto; display:block}
+  .sec_team_grid{display:grid; grid-template-columns:repeat(8,1fr); gap:10px; max-width:1100px; margin:0 auto}
+  .sec_team_card{position:relative; border-radius:8px; overflow:hidden; aspect-ratio:2/3; border:1px solid rgba(196,163,90,.18); cursor:pointer}
+  .sec_team_card img{width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(15%); transition:transform .4s ease}
+  .sec_team_card:hover img{transform:scale(1.06)}
+  .sec_team_card::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,rgba(9,10,15,.75) 100%)}
+  @media (max-width:900px){.sec_team_grid{grid-template-columns:repeat(4,1fr); gap:8px} .sec_team_tit{font-size:34px}}
+
+  #memberModal{display:none; position:fixed; inset:0; z-index:9999; background:rgba(9,10,15,.88); align-items:center; justify-content:center; padding:24px; box-sizing:border-box}
+  #memberModal .modal_card{position:relative; width:100%; max-width:380px; background:linear-gradient(180deg,#12141C 0%,#0A0C12 100%); border:1px solid rgba(196,163,90,.35); border-radius:10px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.6); text-align:center; padding-bottom:34px}
+  #memberModal .modal_img{width:100%; aspect-ratio:2/3; object-fit:cover; display:block}
+  #memberModal .modal_office{margin-top:26px; font-size:12px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; font-weight:600}
+  #memberModal .modal_name{margin-top:10px; font-family:Georgia,'Noto Serif KR',serif; font-size:26px; color:var(--ivory)}
+  #memberModal .modal_link{display:inline-flex; align-items:center; gap:6px; margin-top:16px; font-size:14px; color:var(--stone); text-decoration:none; letter-spacing:.5px; border-bottom:1px solid rgba(196,163,90,.4); padding-bottom:2px}
+  #memberModal .modal_link:hover{color:var(--gold)}
+  #memberModal .modal_close{position:absolute; top:14px; right:14px; width:32px; height:32px; border-radius:50%; background:rgba(10,12,18,.7); border:1px solid rgba(196,163,90,.4); color:var(--gold); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; z-index:2}
+
+  /* together */
+  .sec-together{position:relative; width:100%; padding:130px 24px; text-align:center; background:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 55%,var(--bg3) 100%); overflow:hidden}
+  .sec-together::before{content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 35%, rgba(196,163,90,.07), transparent 60%)}
+  .sec-together-inner{position:relative; z-index:2}
+  .sec-together .word{font-family:Georgia,'Noto Serif KR',serif; font-size:80px; font-weight:400; letter-spacing:8px; color:var(--ivory)}
+  .sec-together .sub{font-size:17px; line-height:1.9; color:var(--stone); max-width:600px; margin:0 auto}
+  @media (max-width:768px){.sec-together .word{font-size:44px; letter-spacing:4px}}
+
+  /* application form */
+  .sec-apply{padding:130px 24px; background:var(--bg2); text-align:center}
+  .sec-apply .tit{font-family:Georgia,'Noto Serif KR',serif; font-size:34px; margin-bottom:50px}
+  form.apply-form{max-width:520px; margin:0 auto; text-align:left; display:flex; flex-direction:column; gap:16px}
+  .apply-form label{font-size:13px; color:var(--stone); letter-spacing:.5px; margin-bottom:6px; display:block}
+  .apply-form input[type=text], .apply-form input[type=tel], .apply-form textarea{width:100%; padding:14px 16px; background:rgba(255,255,255,.03); border:1px solid rgba(196,163,90,.3); border-radius:4px; color:var(--ivory); font-size:14px; font-family:inherit}
+  .apply-form textarea{resize:vertical; min-height:70px}
+  .radio-group{display:flex; flex-wrap:wrap; gap:10px}
+  .radio-group label{display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ivory); background:rgba(255,255,255,.03); border:1px solid rgba(196,163,90,.25); border-radius:20px; padding:8px 14px; cursor:pointer; margin:0}
+  .radio-group input{accent-color:var(--gold)}
+  .apply-form button{margin-top:10px; padding:18px; background:var(--gold); color:var(--bg1); font-weight:700; font-size:15px; border:0; border-radius:3px; cursor:pointer}
+  .form-note{font-size:12px; color:var(--stone); margin-top:16px; opacity:.75}
+  #formSuccess{display:none; max-width:520px; margin:0 auto; padding:40px 20px; color:var(--gold); font-size:15px; line-height:1.8}
+
+  /* faq */
+  .sec-faq{padding:130px 24px; background:var(--bg1)}
+  .faq-inner{max-width:760px; margin:0 auto}
+  .faq-head{text-align:center; margin-bottom:50px}
+  .faq-item{border-bottom:1px solid rgba(196,163,90,.18); padding:24px 0}
+  .faq-item .q{font-weight:700; font-size:16px; color:var(--ivory); cursor:pointer; display:flex; justify-content:space-between; gap:12px}
+  .faq-item .q .mark{color:var(--gold)}
+  .faq-item .a{margin-top:14px; font-size:14px; color:var(--stone); line-height:1.85; display:none}
+  .faq-item.open .a{display:block}
+
+  /* join */
+  .sec-join{position:relative; width:100%; padding:130px 24px; text-align:center; background:#090A0F; overflow:hidden}
+  .sec-join::after{content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 40%, rgba(196,163,90,.1), transparent 62%)}
+  .sec-join-inner{position:relative; z-index:2; max-width:820px; margin:0 auto}
+  .sec-join .tit{font-family:Georgia,'Noto Serif KR',serif; font-size:44px; font-weight:400; line-height:1.5; color:var(--ivory)}
+  .sec-join .tit em{font-style:normal; color:var(--gold)}
+  .sec-join .txt{font-size:16px; line-height:1.9; color:var(--stone); margin:30px auto 46px}
+  .sec-join .btns{display:flex; gap:18px; justify-content:center; flex-wrap:wrap}
+  @media (max-width:768px){.sec-join .tit{font-size:28px}}
+
+  footer{padding:40px 24px; text-align:center; font-size:12px; color:var(--stone); background:var(--bg3); border-top:1px solid rgba(196,163,90,.12)}
+  footer .brandline{margin-top:8px; color:var(--gold); font-weight:600; letter-spacing:1px}
+</style>
+</head>
+<body>
+
+<div class="fixed_btn">
+  <a href="https://open.kakao.com/o/gxPMLgEi" target="_blank" class="apply">신청<br>하기</a>
+  <a href="https://open.kakao.com/o/gxPMLgEi" target="_blank" class="ask">문의<br>하기</a>
+</div>
+
+<header>
+  <div class="container">
+    <a href="#apply-form" class="btn-cta">9/2 무료 참석</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="sec-hero">
+  <div class="sec-hero-inner">
+    <p class="tit serif">
+      당신의 전문성을 <em>레거시</em>에 거십시오.<br>
+      <span class="nowrap-line"><em>레거시</em>는 당신에게 더 넓은 세상을 열겠습니다.</span>
+    </p>
+    <div class="rule"></div>
+    <p class="sub">
+      전문직을 위한 AI・금융・마케팅의 융합<br>
+      전문직 500여 명이 모이는 단 하루
+    </p>
+    <div class="cta-row">
+      <a href="#apply-form" class="btn-primary">9/2 무료 참석</a>
+      <a href="#about" class="btn-ghost">VCC 자세히 보기</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="sec-info">
+  <div class="info-grid">
+    <div><div class="label">DATE</div><div class="val">2026. 09. 02 (WED)</div></div>
+    <div><div class="label">TIME</div><div class="val">13:00 ~ 20:00</div></div>
+    <div><div class="label">PLACE</div><div class="val">그랜드 하얏트 서울<br>그랜드볼룸홀</div></div>
+    <div><div class="label">COST</div><div class="val">330,000원 → 전액 지원<br>(호텔 Dinner 제공)</div></div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="sec-statement">
+  <p>
+    이번 VCC는 단순한 세미나가 아닙니다.<br>
+    혼자 성장하는 사람과 <strong>함께 성장하는 사람</strong>의 차이를 직접 확인하는 자리입니다.<br><br>
+    평소 만나기 어려웠던 <strong>세무사·회계사·노무사</strong>들과 연결되고<br>
+    앞으로 함께할 수 있는 사람을 만나는 자리입니다.
+  </p>
+</section>
+
+<!-- MARQUEE (withlegacy.kr sec1) -->
+<section class="marquee-sec">
+  <div class="legacy-tag"><span>VVIP · CONSULTING · CONFERENCE</span> — LEGACY</div>
+  <div class="marquee-ct">
+    <ul>
+      <li>VVIP</li><li class="on">VVIP</li><li>VVIP</li><li>VVIP</li><li class="on">VVIP</li><li>VVIP</li><li>VVIP</li><li class="on">VVIP</li><li>VVIP</li><li>VVIP</li><li class="on">VVIP</li><li>VVIP</li><li>VVIP</li><li class="on">VVIP</li><li>VVIP</li><li>VVIP</li>
+    </ul>
+    <ul>
+      <li>CONSULTING</li><li class="on">CONSULTING</li><li>CONSULTING</li><li>CONSULTING</li><li class="on">CONSULTING</li><li>CONSULTING</li><li>CONSULTING</li><li class="on">CONSULTING</li><li>CONSULTING</li><li>CONSULTING</li><li class="on">CONSULTING</li><li>CONSULTING</li><li>CONSULTING</li><li class="on">CONSULTING</li><li>CONSULTING</li><li>CONSULTING</li>
+    </ul>
+    <ul>
+      <li>CONFERENCE</li><li class="on">CONFERENCE</li><li>CONFERENCE</li><li>CONFERENCE</li><li class="on">CONFERENCE</li><li>CONFERENCE</li><li>CONFERENCE</li><li class="on">CONFERENCE</li><li>CONFERENCE</li><li>CONFERENCE</li><li class="on">CONFERENCE</li><li>CONFERENCE</li><li>CONFERENCE</li><li class="on">CONFERENCE</li><li>CONFERENCE</li><li>CONFERENCE</li>
+    </ul>
+    <ul>
+      <li>LEGACY</li><li class="on">LEGACY</li><li>LEGACY</li><li>LEGACY</li><li class="on">LEGACY</li><li>LEGACY</li><li>LEGACY</li><li class="on">LEGACY</li><li>LEGACY</li><li>LEGACY</li><li class="on">LEGACY</li><li>LEGACY</li><li>LEGACY</li><li class="on">LEGACY</li><li>LEGACY</li><li>LEGACY</li>
+    </ul>
+  </div>
+  <div class="scroll-down">
+    <div class="sd-wrap">
+      <div class="sd st01">SCROLL DOWN</div>
+      <div class="sd st02">SCROLL DOWN</div>
+      <div class="sd st03">SCROLL DOWN</div>
+      <div class="sd st04">SCROLL DOWN</div>
+      <div class="sd st05">SCROLL DOWN</div>
+    </div>
+  </div>
+</section>
+
+<!-- TXT_SEC (withlegacy.kr statement) -->
+<section class="txt-sec">
+  <p class="tit">전문직이 전문직을 부르다</p>
+  <p class="sub-tit">연결이 자산이 되는 시대, 네트워크가 성장을 만듭니다.</p>
+  <div class="body-txt">
+    <p>그 어느 때보다 빠르게 변화하는 지금,</p>
+    <p>네 번째 VCC가 열립니다.</p>
+    <p>전문직 네트워크를 기반으로, 각 분야를 이끄는 전문가들의</p>
+    <p>실전 노하우와 자산관리 인사이트까지,</p>
+  </div>
+  <p class="invite">LEGACY에 초대합니다</p>
+</section>
+
+<!-- VENUE HERO (hyatt crossfade, date/place) -->
+<section class="venue-hero">
+  <img class="vslide v1" src="images/venue-ballroom.webp" alt="그랜드 하얏트 서울">
+  <img class="vslide v2" src="images/venue-deli.webp" alt="그랜드 하얏트 서울">
+  <img class="vslide v3" src="images/venue-ballroom.webp" alt="그랜드 하얏트 서울">
+  <div class="venue-overlay"></div>
+  <div class="venue-text">
+    <p class="vt-date serif">2026. 09. 02. (WED)</p>
+    <p class="vt-place">GRAND HYATT SEOUL</p>
+  </div>
+</section>
+
+<!-- AUTOPLAY VIDEO -->
+<section class="video-sec">
+  <video id="bgVideo" muted autoplay loop playsinline preload="auto">
+    <source src="https://seongjong2.mycafe24.com/wp-content/uploads/2026/07/parkbk.mp4" type="video/mp4">
+  </video>
+  <button id="muteBtn" class="mute-btn" aria-label="음소거 전환">🔇</button>
+</section>
+<script>
+(function(){
+  var v = document.getElementById('bgVideo');
+  var btn = document.getElementById('muteBtn');
+  if(!v || !btn) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ v.play().catch(function(){}); }
+      else { v.pause(); }
+    });
+  }, {threshold:0.3});
+  io.observe(v);
+  btn.addEventListener('click', function(){
+    v.muted = !v.muted;
+    btn.textContent = v.muted ? '🔇' : '🔊';
+    if(!v.muted){ v.play().catch(function(){}); }
+  });
+})();
+</script>
+
+<!-- ABOUT / PAST VCC -->
+<section class="sec-about" id="about">
+  <p class="eyebrow">VCC?</p>
+  <div class="word serif">LEGACY</div>
+  <p class="sub2">2026년 4th VCC · AI, 금융, 마케팅 그 이상</p>
+
+  <div class="yt-grid">
+    <div class="yt-card">
+      <div class="frame"><iframe src="https://www.youtube.com/embed/-lt0dmre2Q4" title="2025년 3rd VCC" allowfullscreen loading="lazy"></iframe></div>
+      <p>2025년 3rd VCC와 함께</p>
+    </div>
+    <div class="yt-card">
+      <div class="frame"><iframe src="https://www.youtube.com/embed/2UtnZVWjb38" title="2024년 2nd VCC" allowfullscreen loading="lazy"></iframe></div>
+      <p>2024년 2nd VCC와 함께</p>
+    </div>
+    <div class="yt-card">
+      <div class="frame"><div class="ph">2023년 1st VCC<br>영상 업데이트 예정</div></div>
+      <p>2023년 1st VCC와 함께</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFIT 01 -->
+<div class="benefit-row">
+  <div>
+    <div class="benefit-num">BENEFIT 01</div>
+    <h3>고경희 세무사 특강 50% 할인</h3>
+    <p>8월 8일(토) '비상장주식평가' 특강 수강권 50% 할인 제공</p>
+  </div>
+  <div class="benefit-media"><iframe src="https://www.youtube.com/embed/ib-vJ8CDHWk" title="고경희 세무사 특강" allowfullscreen loading="lazy"></iframe></div>
+</div>
+
+<!-- BENEFIT 02 -->
+<div class="benefit-row">
+  <div>
+    <div class="benefit-num">BENEFIT 02</div>
+    <h3>VCC 무료 참석권</h3>
+    <p>9월 2일(수) VCC 본 행사 무료 참석권 제공<br>호텔 Dinner 제공</p>
+  </div>
+  <div class="benefit-media"><div class="ph">VCC 4th 연사 라인업 포스터<br>브로셔 업로드 예정</div></div>
+</div>
+
+<p class="footnote">※ 상기 일정 및 장소는 운영 상황에 따라 변경될 수 있으며, 변경 시 신청자에 한해 개별 안내드립니다.</p>
+
+<!-- GATEWAY -->
+<section class="sec-gateway">
+  <p class="tit">GATEWAY</p>
+  <p class="sub">
+    LEGACY는 전문직의 성장을 가로막는 벽이 아닌<br>
+    더 넓은 세상으로 향하는 관문(Gateway) 입니다.
+  </p>
+</section>
+
+<!-- CURRICULUM -->
+<section class="sec-curriculum">
+  <div class="curr-head">
+    <p class="eyebrow">CURRICULUM</p>
+    <p class="tit">VCC PROGRAM</p>
+  </div>
+
+  <div class="poster-block"><img src="images/poster.jpg" alt="2026 VVIP CONSULTING CONFERENCE VCC 포스터"></div>
+
+  <div class="curr-wrap">
+    <div class="curr-part">
+      <div class="curr-part-head"><span class="curr-badge">1부</span><span class="curr-part-title">Crescendo <em>"공간의 한계를 넘어"</em></span></div>
+      <div class="curr-row curr-break"><div class="curr-time">13:30 - 13:35</div><div class="curr-info"><p class="curr-name">Opening</p></div></div>
+      <div class="curr-row"><div class="curr-time">13:35 - 13:50</div><div class="curr-info"><p class="curr-name">VIP Lock-in 전문직 페르소나 빌드업</p><p class="curr-speaker">회계법인 디자인택스 대표 · 김희연 회계사</p></div></div>
+      <div class="curr-row curr-highlight"><div class="curr-time">13:50 - 14:50</div><div class="curr-info"><p class="curr-name">현재 당신의 본업 생존 확률은 몇 프로일까?</p><p class="curr-speaker">법률사무소 리바이어던 대표 · 임현서 변호사</p></div></div>
+      <div class="curr-row curr-break"><div class="curr-time">14:50 - 15:00</div><div class="curr-info"><p class="curr-name">Break Time</p></div></div>
+    </div>
+
+    <div class="curr-part">
+      <div class="curr-part-head"><span class="curr-badge">2부</span><span class="curr-part-title">Accelerando <em>"Nothing or ALL"</em></span></div>
+      <div class="curr-row"><div class="curr-time">15:00 - 15:15</div><div class="curr-info"><p class="curr-name">법인 종합 재무설계 DESIGN UNPACKED</p><p class="curr-speaker">유원세무회계컨설팅 대표 · 구은우 세무사</p></div></div>
+      <div class="curr-row curr-highlight"><div class="curr-time">15:15 - 16:15</div><div class="curr-info"><p class="curr-name">The AI Margin Call (본업의 강제 청산)</p><p class="curr-speaker">블루닷 AI연구소 센터장 · 강정수 센터장</p></div></div>
+      <div class="curr-row curr-break"><div class="curr-time">16:15 - 16:25</div><div class="curr-info"><p class="curr-name">Break Time</p></div></div>
+    </div>
+
+    <div class="curr-part">
+      <div class="curr-part-head"><span class="curr-badge">3부</span><span class="curr-part-title">Con Brio <em>"노아의 방주"</em></span></div>
+      <div class="curr-row"><div class="curr-time">16:25 - 16:40</div><div class="curr-info"><p class="curr-name">클로드 활용 컨설팅 시연 (최초 공개)</p><p class="curr-speaker">회계법인 리파인드 대표 · 이종헌 회계사</p></div></div>
+      <div class="curr-row"><div class="curr-time">16:40 - 17:40</div><div class="curr-info"><p class="curr-name">2026 금융빌딩 ALL 인클루시브</p><p class="curr-speaker">세무법인 포디움 대표 · 김태우 세무사</p></div></div>
+      <div class="curr-row curr-break"><div class="curr-time">17:40 - 17:50</div><div class="curr-info"><p class="curr-name">Break Time</p></div></div>
+    </div>
+
+    <div class="curr-part" style="margin-bottom:0">
+      <div class="curr-part-head"><span class="curr-badge">4부</span><span class="curr-part-title">Sostenuto <em>"두려워 말라"</em></span></div>
+      <div class="curr-row curr-highlight"><div class="curr-time">17:50 - 18:50</div><div class="curr-info"><p class="curr-name">AI시대는 마인드로 승부한다.</p><p class="curr-speaker">더블유인사이츠 CEO · 김미경 대표</p></div></div>
+      <div class="curr-row curr-break" style="border-bottom:none"><div class="curr-time">18:50 - 20:00</div><div class="curr-info"><p class="curr-name">Dinner</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBER (formerly LEADER) -->
+<section class="sec-team">
+  <div class="sec_team_inner">
+    <div class="sec_team_head">
+      <p class="eyebrow">LEGACY</p>
+      <p class="sec_team_tit">MEMBER</p>
+    </div>
+    <div class="sec_team_group"><img src="images/group.jpg" alt="LEGACY 단체사진"></div>
+    <div class="sec_team_grid" id="teamGrid">
+      <div class="sec_team_card" data-idx="1" onclick="openMemberModal(1)"><img src="images/member-01.jpg" alt="박병곤 회계사"></div>
+      <div class="sec_team_card" data-idx="2" onclick="openMemberModal(2)"><img src="images/member-02.jpg" alt="김철현 세무사"></div>
+      <div class="sec_team_card" data-idx="3" onclick="openMemberModal(3)"><img src="images/member-03.jpg" alt="유상연 세무사"></div>
+      <div class="sec_team_card" data-idx="4" onclick="openMemberModal(4)"><img src="images/member-04.jpg" alt="김성종 노무사"></div>
+      <div class="sec_team_card" data-idx="5" onclick="openMemberModal(5)"><img src="images/member-05.jpg" alt="유연선 매니저"></div>
+      <div class="sec_team_card" data-idx="6" onclick="openMemberModal(6)"><img src="images/member-06.jpg" alt="임세현 매니저"></div>
+      <div class="sec_team_card" data-idx="7" onclick="openMemberModal(7)"><img src="images/member-07.jpg" alt="황지환 세무사"></div>
+      <div class="sec_team_card" data-idx="8" onclick="openMemberModal(8)"><img src="images/member-08.jpg" alt="김형석 세무사"></div>
+      <div class="sec_team_card" data-idx="9" onclick="openMemberModal(9)"><img src="images/member-09.jpg" alt="염지훈 세무사"></div>
+      <div class="sec_team_card" data-idx="10" onclick="openMemberModal(10)"><img src="images/member-10.jpg" alt="김희연 회계사"></div>
+      <div class="sec_team_card" data-idx="11" onclick="openMemberModal(11)"><img style="object-position:50% 0%" src="images/member-11.jpg" alt="김헤리 세무사"></div>
+      <div class="sec_team_card" data-idx="12" onclick="openMemberModal(12)"><img src="images/member-12.jpg" alt="김도용 세무사"></div>
+      <div class="sec_team_card" data-idx="13" onclick="openMemberModal(13)"><img src="images/member-13.jpg" alt="박성훈 세무사"></div>
+      <div class="sec_team_card" data-idx="14" onclick="openMemberModal(14)"><img src="images/member-14.jpg" alt="한성민 세무사"></div>
+      <div class="sec_team_card" data-idx="15" onclick="openMemberModal(15)"><img src="images/member-15.jpg" alt="황장훈 세무사"></div>
+      <div class="sec_team_card" data-idx="16" onclick="openMemberModal(16)"><img src="images/member-16.jpg" alt="손영권 세무사"></div>
+      <div class="sec_team_card" data-idx="17" onclick="openMemberModal(17)"><img src="images/member-17.jpg" alt="오규성 세무사"></div>
+      <div class="sec_team_card" data-idx="18" onclick="openMemberModal(18)"><img src="images/member-18.jpg" alt="오성우 세무사"></div>
+      <div class="sec_team_card" data-idx="19" onclick="openMemberModal(19)"><img src="images/member-19.jpg" alt="김세현 세무사"></div>
+      <div class="sec_team_card" data-idx="20" onclick="openMemberModal(20)"><img src="images/member-20.jpg" alt="이도해 회계사"></div>
+      <div class="sec_team_card" data-idx="21" onclick="openMemberModal(21)"><img src="images/member-21.jpg" alt="이원길 세무사"></div>
+      <div class="sec_team_card" data-idx="22" onclick="openMemberModal(22)"><img src="images/member-22.jpg" alt="박수진 세무사"></div>
+      <div class="sec_team_card" data-idx="23" onclick="openMemberModal(23)"><img src="images/member-23.jpg" alt="윤혜림 노무사"></div>
+      <div class="sec_team_card" data-idx="24" onclick="openMemberModal(24)"><img src="images/member-24.jpg" alt="김찬희 세무사"></div>
+    </div>
+  </div>
+</section>
+
+<div id="memberModal" onclick="closeMemberModal(event)">
+  <div class="modal_card" onclick="event.stopPropagation()">
+    <div class="modal_close" onclick="closeMemberModal(event)">&times;</div>
+    <img id="modalImg" class="modal_img" src="" alt="">
+    <p id="modalOffice" class="modal_office"></p>
+    <p id="modalName" class="modal_name"></p>
+    <a id="modalLink" class="modal_link" href="#" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#C4A35A" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" stroke="#C4A35A" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="#C4A35A"/></svg>
+      <span id="modalLinkText"></span>
+    </a>
+  </div>
+</div>
+
+<script>
+const memberData = {
+  1: {office:'동성회계법인', name:'박병곤 회계사', linkUrl:'https://instagram.com/accountingmoney', linkLabel:'@accountingmoney'},
+  2: {office:'세무법인 포디움', name:'김철현 세무사', linkUrl:'https://instagram.com/treasure.bsd', linkLabel:'@treasure.bsd'},
+  3: {office:'동성회계법인', name:'유상연 세무사', linkUrl:'https://instagram.com/accountingmoney', linkLabel:'@accountingmoney'},
+  4: {office:'노무법인 태율', name:'김성종 노무사', linkUrl:'https://instagram.com/thetaeyul', linkLabel:'@thetaeyul'},
+  5: {office:'리치디바인 레거시 사업단', name:'유연선 매니저', linkUrl:'https://instagram.com/hi___legacy', linkLabel:'@hi___legacy'},
+  6: {office:'리치디바인 레거시 사업단', name:'임세현 매니저', linkUrl:'https://instagram.com/hi___legacy', linkLabel:'@hi___legacy'},
+  7: {office:'세무법인엑스퍼트', name:'황지환 세무사', linkUrl:'https://taxexpert.kr/', linkLabel:'공식 사이트 바로가기'},
+  8: {office:'더프라임세무회계사무소', name:'김형석 세무사', linkUrl:'https://blog.naver.com/taxdarin', linkLabel:'블로그 바로가기'},
+  9: {office:'가현 세무법인', name:'염지훈 세무사', linkUrl:'https://instagram.com/taxbro_', linkLabel:'@taxbro_'},
+  10: {office:'디자인텍스', name:'김희연 회계사', linkUrl:'https://instagram.com/designtax', linkLabel:'@designtax'},
+  11: {office:'세무법인HKL', name:'김헤리 세무사', linkUrl:'https://www.youtube.com/@국세언니', linkLabel:'유튜브 채널 바로가기'},
+  12: {office:'다힘세무회계', name:'김도용 세무사', linkUrl:'https://instagram.com/theworldtax_kimhyeri', linkLabel:'@theworldtax_kimhyeri'},
+  13: {office:'다우세무컨설팅', name:'박성훈 세무사', linkUrl:'https://instagram.com/dautax_hun', linkLabel:'@dautax_hun'},
+  14: {office:'달란트택스', name:'한성민 세무사', linkUrl:'https://instagram.com/nopaytax_kr', linkLabel:'@nopaytax_kr'},
+  15: {office:'JS세무회계', name:'황장훈 세무사', linkUrl:'https://www.jssemu.com/', linkLabel:'공식 사이트 바로가기'},
+  16: {office:'손영권세무사사무소', name:'손영권 세무사', linkUrl:'https://instagram.com/son_semusa', linkLabel:'@son_semusa'},
+  17: {office:'오규성 세무회계', name:'오규성 세무사', linkUrl:'https://instagram.com/oks_tax_official', linkLabel:'@oks_tax_official'},
+  18: {office:'세무회계 대성', name:'오성우 세무사', linkUrl:'https://blog.naver.com/otaxpro911', linkLabel:'블로그 바로가기'},
+  19: {office:'스페셜세무회계', name:'김세현 세무사', linkUrl:'https://blog.naver.com/kshtaxtax', linkLabel:'블로그 바로가기'},
+  20: {office:'NICE피앤아이', name:'이도해 회계사', linkUrl:'https://www.nicepni.co.kr/', linkLabel:'공식 사이트 바로가기'},
+  21: {office:'하이앤드 텍스', name:'이원길 세무사', linkUrl:'https://www.highendtax.co.kr/', linkLabel:'공식 사이트 바로가기'},
+  22: {office:'세무법인 혜움', name:'박수진 세무사', linkUrl:'https://www.heumtax.com/', linkLabel:'공식 사이트 바로가기'},
+  23: {office:'윤율인사노무컨설팅', name:'윤혜림 노무사', linkUrl:'https://instagram.com/hrcpla__', linkLabel:'@hrcpla__'},
+  24: {office:'신승세무법인', name:'김찬희 세무사', linkUrl:'https://blog.naver.com/chalie_tax', linkLabel:'블로그 바로가기'}
+};
+const memberImgs = Array.from(document.querySelectorAll('#teamGrid .sec_team_card img')).map(img => img.getAttribute('src'));
+function openMemberModal(idx){
+  const d = memberData[idx];
+  if(!d) return;
+  document.getElementById('modalImg').src = memberImgs[idx-1] || '';
+  document.getElementById('modalOffice').textContent = d.office;
+  document.getElementById('modalName').textContent = d.name;
+  document.getElementById('modalLinkText').textContent = d.linkLabel;
+  document.getElementById('modalLink').href = d.linkUrl;
+  document.getElementById('memberModal').style.display = 'flex';
+}
+function closeMemberModal(e){
+  document.getElementById('memberModal').style.display = 'none';
+}
+</script>
+
+<!-- TOGETHER -->
+<section class="sec-together">
+  <div class="sec-together-inner">
+    <p class="eyebrow">LEGACY</p>
+    <p class="word">TOGETHER</p>
+    <div class="rule"></div>
+    <p class="sub">
+      혼자 걷는 길과, 함께 걷는 길은 다릅니다.<br>
+      같은 방향을 보는 전문가들이 모이면,<br>
+      그 속도와 크기는 완전히 달라집니다.
+    </p>
+  </div>
+</section>
+
+<!-- APPLY FORM -->
+<section class="sec-apply" id="apply-form">
+  <p class="eyebrow">THE END</p>
+  <p class="tit serif">VCC의 자리는 선착순으로 마감됩니다</p>
+
+  <form class="apply-form" id="vccForm" onsubmit="return handleSubmit(event)">
+    <div>
+      <label for="f-name">성함*</label>
+      <input type="text" id="f-name" name="성함" required>
+    </div>
+    <div>
+      <label for="f-phone">연락처*</label>
+      <input type="tel" id="f-phone" name="연락처" required>
+    </div>
+    <div>
+      <label>보유 자격사*</label>
+      <div class="radio-group">
+        <label><input type="radio" name="자격사" value="세무사" required> 세무사</label>
+        <label><input type="radio" name="자격사" value="회계사"> 회계사</label>
+        <label><input type="radio" name="자격사" value="변리사"> 변리사</label>
+        <label><input type="radio" name="자격사" value="법무사"> 법무사</label>
+        <label><input type="radio" name="자격사" value="변호사"> 변호사</label>
+        <label><input type="radio" name="자격사" value="감정평가사"> 감정평가사</label>
+        <label><input type="radio" name="자격사" value="기타 전문직"> 기타 전문직</label>
+      </div>
+    </div>
+    <div>
+      <label for="f-invite">초대해주신 분(선택)</label>
+      <input type="text" id="f-invite" name="초대해주신 분">
+    </div>
+    <div>
+      <label for="f-etc">그 외 궁금한 점</label>
+      <textarea id="f-etc" name="문의사항"></textarea>
+    </div>
+    <button type="submit">9/2 무료 참석</button>
+    <p class="form-note">제출하신 정보는 VCC 참가 신청 및 안내 목적으로만 사용됩니다.</p>
+  </form>
+  <div id="formSuccess">
+    신청이 접수되었습니다.<br>담당자가 곧 연락드리겠습니다. 🙏
+  </div>
+</section>
+
+<script>
+// ▼ 폼프리(Formspree) 연동: 아래 FORM_ENDPOINT를 발급받은 주소로 교체하세요.
+// 예: https://formspree.io/f/xxxxxxxx  (폼프리에서 "New Form" 생성 후 제공되는 endpoint)
+const FORM_ENDPOINT = "https://formspree.io/f/여기에_발급받은_ID_입력";
+
+function handleSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+
+  if(FORM_ENDPOINT.includes("여기에_발급받은_ID_입력")){
+    console.warn("FORM_ENDPOINT가 설정되지 않았습니다. 폼프리 연동 가이드를 참고해 실제 endpoint로 교체해주세요.", new FormData(form));
+    form.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    return false;
+  }
+
+  fetch(FORM_ENDPOINT, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(res => {
+    if(res.ok){
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      alert('신청 접수 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    }
+  }).catch(() => {
+    alert('신청 접수 중 문제가 발생했습니다. 네트워크 상태를 확인해주세요.');
+  });
+
+  return false;
+}
+</script>
+
+<!-- FAQ -->
+<section class="sec-faq">
+  <div class="faq-inner">
+    <div class="faq-head">
+      <p class="eyebrow">VCC FAQ</p>
+      <p class="tit serif">많이 궁금해 하시는 질문을 모았습니다</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="q" onclick="this.parentElement.classList.toggle('open')"><span>Q. Grand Hyatt Seoul 주차가 가능할까요?</span><span class="mark">＋</span></div>
+      <div class="a">VCC 참석자의 경우 무료 주차가 가능합니다. 단, 주차 공간이 다소 협소하므로 가능하시다면 대중교통 이용을 권장드립니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="q" onclick="this.parentElement.classList.toggle('open')"><span>Q. 회계사나 세무사처럼 전문직만 참석이 가능한가요?</span><span class="mark">＋</span></div>
+      <div class="a">네 맞습니다. VCC는 개업 전문직을 대상으로 하는 행사입니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="q" onclick="this.parentElement.classList.toggle('open')"><span>Q. 주로 어떤 내용들로 진행되는지 궁금합니다.</span><span class="mark">＋</span></div>
+      <div class="a">전문직의 미래를 재편할 명확한 방향성과 적시적 실행 전략, 그리고 비즈니스의 성장을 가속할 AI 모듈과 최고 수준의 인사이트까지, 대한민국 부의 트래픽 최전선에서 시장을 주도할 새로운 성공 방정식과 비즈니스 돌파구를 제시해드립니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="q" onclick="this.parentElement.classList.toggle('open')"><span>Q. 지방에 거주하고 있는데 온라인으로 참석이 가능할까요?</span><span class="mark">＋</span></div>
+      <div class="a">아쉽지만 오프라인으로만 진행되는 점 양해 부탁드립니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="q" onclick="this.parentElement.classList.toggle('open')"><span>Q. 전문직들을 위한 맞춤형 집중 프로그램이 있나요?</span><span class="mark">＋</span></div>
+      <div class="a">네, MBA 13기 전문직 프로그램 등 맞춤형 프로그램을 운영하고 있습니다. 상세 자료는 신청 후 담당자를 통해 안내드립니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="sec-join">
+  <div class="sec-join-inner">
+    <p class="eyebrow">LEGACY와 함께</p>
+    <p class="tit">VCC에서 만난 인연은,<br><em>LEGACY</em>에서 완성됩니다</p>
+    <div class="rule"></div>
+    <p class="txt">
+      전문직이 전문직을 부르는 자리, 제4회 VCC.<br>
+      이 하루의 네트워크가 끝이 아니라 시작이 되도록,<br>
+      LEGACY는 당신의 다음 성장을 함께 설계할 파트너를 찾습니다.
+    </p>
+    <div class="btns">
+      <a href="#apply-form" class="btn-primary">9/2 무료 참석</a>
+      <a href="https://open.kakao.com/o/gxPMLgEi" target="_blank" class="btn-ghost">사업단 문의하기</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  VVIP CONSULTING CONFERENCE · 2026.09.02 (WED) · Grand Hyatt Seoul
+  <div class="brandline">LEGACY</div>
+</footer>
+
+</body>
+</html>
