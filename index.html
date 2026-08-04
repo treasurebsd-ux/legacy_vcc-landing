@@ -634,9 +634,13 @@ function closeMemberModal(e){
         <label><input type="radio" name="자격사" value="기타 전문직" onchange="handleLicenseChange()"> 기타 전문직</label>
       </div>
     </div>
+    <div id="f-firm-wrap" style="display:none">
+      <label for="f-firm" id="f-firm-label">상호명*</label>
+      <input type="text" id="f-firm" name="상호명" placeholder="예: OO세무법인">
+    </div>
     <div id="f-cohort-wrap" style="display:none">
-      <label for="f-cohort">기수*</label>
-      <input type="text" id="f-cohort" name="기수" placeholder="예: 61기">
+      <label for="f-cohort">기수 또는 합격연도*</label>
+      <input type="text" id="f-cohort" name="기수 또는 합격연도" placeholder="예: 61기 또는 2020년">
     </div>
     <div id="f-passyear-wrap" style="display:none">
       <label for="f-passyear">합격연도*</label>
@@ -673,22 +677,32 @@ const FORM_ENDPOINT = "https://formspree.io/f/여기에_발급받은_ID_입력";
 
 function handleLicenseChange(){
   var val = (document.querySelector('input[name="자격사"]:checked') || {}).value;
+  var firmWrap = document.getElementById('f-firm-wrap');
+  var firmLabel = document.getElementById('f-firm-label');
+  var firmInput = document.getElementById('f-firm');
   var cohortWrap = document.getElementById('f-cohort-wrap');
-  var passyearWrap = document.getElementById('f-passyear-wrap');
   var cohortInput = document.getElementById('f-cohort');
+  var passyearWrap = document.getElementById('f-passyear-wrap');
   var passyearInput = document.getElementById('f-passyear');
 
-  if(val === '세무사'){
+  if(val === '세무사' || val === '회계사'){
+    firmWrap.style.display = '';
+    firmInput.required = true;
+    firmLabel.textContent = (val === '세무사' ? '세무법인 상호명*' : '회계법인 상호명*');
+    firmInput.placeholder = (val === '세무사' ? '예: OO세무법인' : '예: OO회계법인');
     cohortWrap.style.display = '';
-    passyearWrap.style.display = 'none';
     cohortInput.required = true;
+    passyearWrap.style.display = 'none';
     passyearInput.required = false;
     passyearInput.value = '';
   } else if(val){
+    firmWrap.style.display = 'none';
+    firmInput.required = false;
+    firmInput.value = '';
     cohortWrap.style.display = 'none';
-    passyearWrap.style.display = '';
     cohortInput.required = false;
     cohortInput.value = '';
+    passyearWrap.style.display = '';
     passyearInput.required = true;
   }
 }
